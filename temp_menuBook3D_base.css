@@ -1,0 +1,308 @@
+/* ==========================================================================
+   SATVIK ROOTS — 3D LUXURY SPIRAL-BOUND MENU BOOK
+   Realistic perspective, physical cover opening, dynamic page turning,
+   continuous metallic spiral binding coil, and physical page thickness.
+   ========================================================================== */
+
+.menu-book-perspective-container {
+  perspective: 2200px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+}
+
+.menu-book-wrapper {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.8s ease;
+}
+
+/* Realistic physical page block stack */
+.book-spine-thickness {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 14px;
+  background: linear-gradient(
+    90deg,
+    #050505 0%,
+    #1f1d19 30%,
+    #3d362a 50%,
+    #141310 80%,
+    #0a0a0a 100%
+  );
+  border-radius: 4px 0 0 4px;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.95);
+  transform: translateX(-14px) rotateY(-90deg);
+  transform-origin: right center;
+}
+
+/* Page side edge lines simulating a thick stack of luxury paper */
+.book-page-edge-block {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  right: -8px;
+  width: 8px;
+  background: repeating-linear-gradient(
+    180deg,
+    #1a1917 0px,
+    #1a1917 2px,
+    #2c2822 2px,
+    #2c2822 4px
+  );
+  border-radius: 0 3px 3px 0;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.8), inset 1px 0 2px rgba(198, 161, 91, 0.2);
+  transform: rotateY(90deg);
+  transform-origin: left center;
+}
+
+/* Continuous Spiral Coil SVG Spine Container */
+.spiral-coil-svg-container {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  z-index: 45;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
+}
+
+/* Left-edge Spiral Coil SVG Container for Closed Book & Mobile */
+.spiral-left-svg-container {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: -20px;
+  width: 38px;
+  z-index: 45;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
+}
+
+/* 3D PAGE TURNING SHEETS */
+/* Turning leaf for NEXT page (rotates from right to left around center spine x=0 of right page) */
+.turning-sheet-next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  z-index: 50;
+  animation: turnNextPage 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  pointer-events: none;
+  border-radius: 0 1rem 1rem 0;
+  overflow: visible;
+}
+
+@keyframes turnNextPage {
+  0% {
+    transform: rotateY(0deg);
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: -16px 0 36px rgba(0, 0, 0, 0.75);
+  }
+  100% {
+    transform: rotateY(-180deg);
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Turning leaf for PREV page (rotates from left to right around center spine x=100% of left page) */
+.turning-sheet-prev {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  transform-style: preserve-3d;
+  transform-origin: right center;
+  z-index: 50;
+  animation: turnPrevPage 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  pointer-events: none;
+  border-radius: 1rem 0 0 1rem;
+  overflow: visible;
+}
+
+@keyframes turnPrevPage {
+  0% {
+    transform: rotateY(0deg);
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 16px 0 36px rgba(0, 0, 0, 0.75);
+  }
+  100% {
+    transform: rotateY(180deg);
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Mobile single page turning */
+.turning-sheet-mobile-next {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  z-index: 50;
+  animation: turnMobileNext 0.55s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  pointer-events: none;
+  border-radius: 1rem;
+}
+
+@keyframes turnMobileNext {
+  0% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: rotateY(-120deg);
+    opacity: 0;
+  }
+}
+
+.turning-sheet-mobile-prev {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  z-index: 50;
+  animation: turnMobilePrev 0.55s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  pointer-events: none;
+  border-radius: 1rem;
+}
+
+@keyframes turnMobilePrev {
+  0% {
+    transform: rotateY(-120deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+/* Faces of the turning sheet */
+.page-face-front {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.page-face-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.page-face-back-prev {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(-180deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* Dynamic Turn Shadows */
+.turning-shadow-next {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 25%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: fadeShadowNext 0.65s ease-in-out forwards;
+}
+
+@keyframes fadeShadowNext {
+  0% { opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+.turning-shadow-prev {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    -90deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 25%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: fadeShadowPrev 0.65s ease-in-out forwards;
+}
+
+@keyframes fadeShadowPrev {
+  0% { opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+/* Book ambient drop shadow simulating elevation on dark marble */
+.book-ambient-ground-shadow {
+  position: absolute;
+  bottom: -28px;
+  left: 5%;
+  right: 5%;
+  height: 48px;
+  background: radial-gradient(
+    ellipse 50% 50% at 50% 50%,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.8) 40%,
+    rgba(198, 161, 91, 0.08) 60%,
+    transparent 85%
+  );
+  filter: blur(14px);
+  pointer-events: none;
+  z-index: 0;
+  transform: translateZ(-30px);
+}
+
+/* Fine gold perimeter rim on luxury book cover */
+.gold-embossed-rim {
+  box-shadow: 
+    inset 0 0 0 1px rgba(198, 161, 91, 0.4),
+    inset 0 0 0 2px rgba(8, 8, 8, 0.8),
+    inset 0 0 0 3px rgba(198, 161, 91, 0.2),
+    0 12px 40px rgba(0, 0, 0, 0.85);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .menu-book-wrapper,
+  .turning-sheet-next,
+  .turning-sheet-prev,
+  .turning-sheet-mobile-next,
+  .turning-sheet-mobile-prev {
+    transition: opacity 0.2s ease !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}

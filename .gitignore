@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production build output
+dist/
+dist-ssr/
+
+# Vercel
+.vercel/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor & System files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+
+# Python & Temporary test files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test reports, outputs, and test capture artifacts
+playwright-report/
+test-screenshots/
+test_output/
+extracted_images/
+scratch/
+test-results/
+public/test_*.png
+public/verified_*.png
+public/verify_*.png
+scripts/*.png
+
+# Temporary debug / duplicate files
+scratch_debug.*
+temp_*.css
+Satvik_Roots_OpenCode_Starter_Package/

@@ -1,0 +1,13 @@
+node_modules
+playwright-report
+test-screenshots
+test_output
+extracted_images
+Satvik_Roots_OpenCode_Starter_Package
+scratch
+*.py
+*.cjs
+*.pdf
+test_*.js
+scratch_debug.*
+temp_*.css
